@@ -6,7 +6,6 @@ import javax.persistence.*;
 public class Category {
 
     @Id
-    @Column(name = "id")
     private Long id;
 
     public Long getId() {
