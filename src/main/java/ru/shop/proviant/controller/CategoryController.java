@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.shop.proviant.repository.CategoryRepository;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/category")
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
