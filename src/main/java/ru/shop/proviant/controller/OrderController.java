@@ -14,7 +14,7 @@ public class OrderController {
     private final OrderRepository orderRepository;
 
     @PostMapping
-    public Orders getAllCategory(@RequestBody Orders orders){
+    public Orders getAllCategory(@RequestBody Orders orders) {
         return orderRepository.save(orders);
     }
 }
