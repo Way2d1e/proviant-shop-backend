@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class CategoryModel {
+public class Category {
 
     @Id
     private Long id;
