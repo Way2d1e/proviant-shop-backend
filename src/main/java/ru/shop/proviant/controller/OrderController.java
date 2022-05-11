@@ -20,6 +20,4 @@ public class OrderController {
     public ResponseEntity getAllCategory(){
         return ResponseEntity.ok(this.orderRepository.findAll());
     }
-
-
 }
