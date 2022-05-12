@@ -12,5 +12,6 @@ public class Category {
     private Long id;
 
     private String name_category;
+    private String image_category;
 
 }
