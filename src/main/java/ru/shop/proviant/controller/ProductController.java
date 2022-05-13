@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.shop.proviant.config.MapperUtil;
+import ru.shop.proviant.config.MapperConfig;
 import ru.shop.proviant.dto.ProductDto;
 import ru.shop.proviant.model.Product;
 import ru.shop.proviant.repository.ProductRepository;
@@ -26,7 +26,7 @@ public class ProductController {
     @GetMapping
     public List<ProductDto> getAllProduct() {
         List<Product> posts = productRepository.findAll();
-        return MapperUtil.convertList(posts, this::convertToProductDto);
+        return MapperConfig.convertList(posts, this::convertToProductDto);
     }
 
     private ProductDto convertToProductDto(Product product) {

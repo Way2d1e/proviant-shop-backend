@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 @Configuration
-public class MapperUtil {
+public class MapperConfig {
 
     @Bean
     public ModelMapper getMapper() {
