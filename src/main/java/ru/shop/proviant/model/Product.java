@@ -1,15 +1,21 @@
 package ru.shop.proviant.model;
 
 import lombok.Data;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Product {
-
+    private Integer id;
     @Id
-    private Long id;
+    @GeneratedValue
+    public Integer getId() {
+        return id;
+    }
 
     private Integer category_id;
 
@@ -17,5 +23,4 @@ public class Product {
 
     private Integer price_product;
 
-
-}
+    private String type_measuring;}

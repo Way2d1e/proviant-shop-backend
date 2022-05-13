@@ -1,25 +1,38 @@
 package ru.shop.proviant.controller;
 
 
-import lombok.AllArgsConstructor;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.shop.proviant.dto.CategoryDto;
+import ru.shop.proviant.model.Category;
 import ru.shop.proviant.repository.CategoryRepository;
 
-@RestController
-@AllArgsConstructor
-public class CategoryController {
+import java.util.List;
 
+@RestController
+public class CategoryController {
+    @Autowired
+    private ModelMapper modelMapper;
+    @Autowired
     private final CategoryRepository categoryRepository;
 
+
+    public CategoryController(CategoryRepository categoryRepository, ModelMapper modelMapper) {
+        this.categoryRepository = categoryRepository;
+    }
+
     @CrossOrigin
-    @GetMapping(value = "/category")
-    public ResponseEntity getAllCategory(){
-       return ResponseEntity.ok(categoryRepository.findAll());
+    @GetMapping("/category")
+    public List<Category> getAllCategory() {
+        List<Category> categories = categoryRepository.findAll();
+        return categories/*MapperUtil.convertList(categories, this::convertToCategoryDto)*/;
+    }
+
+    private CategoryDto convertToCategoryDto(Category category) {
+        return modelMapper.map(category, CategoryDto.class);
     }
 
 
