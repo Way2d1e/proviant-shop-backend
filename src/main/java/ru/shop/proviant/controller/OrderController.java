@@ -4,10 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.shop.proviant.model.Order;
+import ru.shop.proviant.model.OrderProductPrice;
 import ru.shop.proviant.repository.OrderRepository;
 import ru.shop.proviant.services.OrderService;
-
-import javax.mail.MessagingException;
 
 @RestController
 @RequestMapping("/order")
@@ -17,9 +16,10 @@ public class OrderController {
 
     private final OrderService orderService;
 
+
     @CrossOrigin
     @PostMapping
-    public Order saveAll(@RequestBody Order orders){
+    public Order saveAll(@RequestBody Order orders) {
         return orderService.saveOrder(orders);
     }
 

@@ -2,20 +2,25 @@ package ru.shop.proviant.model;
 
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
+import org.xmlunit.util.IterableNodeList;
+import ru.shop.proviant.repository.OrderRepository;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Getter
 @Setter
-@Entity(name = "order")
+@Entity(name = "orders")
 public class Order{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @OneToMany(mappedBy = "order")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<OrderProductPrice> orderProductPrice;
 
     @Column(name = "surname_client")
     private String surname;
