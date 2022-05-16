@@ -18,9 +18,6 @@ public class Order{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToMany(mappedBy = "order")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private List<OrderProductPrice> orderProductPrice;
 
     @Column(name = "surname_client")
     private String surname;
