@@ -1,4 +1,4 @@
-package ru.shop.proviant.dto;
+package ru.shop.proviant.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class CategoryDto {
     private Integer id;
-
-    private String name_category;
-    private String image_category;
+    private String name;
+    private String imagePath;
 }

@@ -1,37 +1,29 @@
 package ru.shop.proviant.controller;
 
-import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.shop.proviant.config.MapperConfig;
-import ru.shop.proviant.dto.ProductDto;
-import ru.shop.proviant.model.Product;
-import ru.shop.proviant.repository.ProductRepository;
+import ru.shop.proviant.mappers.ProductMapper;
+import ru.shop.proviant.model.dto.ProductDto;
+import ru.shop.proviant.model.entity.Product;
+import ru.shop.proviant.service.ProductService;
 
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/product")
+@RequiredArgsConstructor
+@CrossOrigin
 public class ProductController {
+    private final ProductService productService;
+    private final ProductMapper productMapper;
 
-    private final ProductRepository productRepository;
-
-    private ModelMapper modelMapper;
-
-    @CrossOrigin
     @GetMapping
     public List<ProductDto> getAllProduct() {
-        List<Product> posts = productRepository.findAll();
-        return MapperConfig.convertList(posts, this::convertToProductDto);
-    }
-
-    private ProductDto convertToProductDto(Product product) {
-        ProductDto productDto = modelMapper.map(product, ProductDto.class);
-        return productDto;
+        List<Product> products = productService.getProducts();
+        return productMapper.listDto(products);
     }
 }
 

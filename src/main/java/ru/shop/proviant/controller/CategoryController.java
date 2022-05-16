@@ -1,39 +1,29 @@
 package ru.shop.proviant.controller;
 
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.shop.proviant.dto.CategoryDto;
-import ru.shop.proviant.model.Category;
-import ru.shop.proviant.repository.CategoryRepository;
+import ru.shop.proviant.mappers.CategoryMapper;
+import ru.shop.proviant.model.dto.CategoryDto;
+import ru.shop.proviant.model.entity.Category;
+import ru.shop.proviant.service.CategoryService;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/category")
+@RequiredArgsConstructor
+@CrossOrigin
 public class CategoryController {
-    @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
-    private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
+    private final CategoryMapper categoryMapper;
 
-
-    public CategoryController(CategoryRepository categoryRepository, ModelMapper modelMapper) {
-        this.categoryRepository = categoryRepository;
+    @GetMapping
+    public List<CategoryDto> getAllCategory() {
+        List<Category> categories = categoryService.getCategories();
+        return categoryMapper.toListDto(categories);
     }
-
-    @CrossOrigin
-    @GetMapping("/category")
-    public List<Category> getAllCategory() {
-        List<Category> categories = categoryRepository.findAll();
-        return categories/*MapperUtil.convertList(categories, this::convertToCategoryDto)*/;
-    }
-
-    private CategoryDto convertToCategoryDto(Category category) {
-        return modelMapper.map(category, CategoryDto.class);
-    }
-
-
 }

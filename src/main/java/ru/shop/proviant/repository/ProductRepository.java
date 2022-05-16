@@ -1,7 +1,9 @@
 package ru.shop.proviant.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.shop.proviant.model.Product;
+import org.springframework.stereotype.Repository;
+import ru.shop.proviant.model.entity.Product;
 
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Long> {
 }
