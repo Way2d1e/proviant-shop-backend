@@ -14,11 +14,10 @@ public class OrderProductController {
 
     private final OrderProductPriceRepository orderProductPriceRepository;
 
+
     @GetMapping("/ordersPer")
     public ResponseEntity findAll(){
         return ResponseEntity.ok(this.orderProductPriceRepository.findAll());
     }
-
-
 
 }
