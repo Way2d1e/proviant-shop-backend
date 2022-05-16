@@ -13,11 +13,12 @@ import javax.mail.MessagingException;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class OrderService {
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
     private final OrderRepository orderRepository;
-
-
 
     public ResponseEntity getAll(){
         ResponseEntity all = ResponseEntity.ok(this.orderRepository.findAll());
@@ -25,8 +26,7 @@ public class OrderService {
     }
 
     public ResponseEntity saveOrder(Order orders){
-        orderRepository.save(orders);
-        return new ResponseEntity<>("First Stage", HttpStatus.OK);
+        return ResponseEntity.ok(orderRepository.save(orders));
     }
 
 

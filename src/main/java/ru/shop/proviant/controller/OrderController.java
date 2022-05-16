@@ -14,24 +14,17 @@ import javax.mail.MessagingException;
 
 @RestController
 @RequestMapping("/order")
-@RequiredArgsConstructor
 public class OrderController {
 
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
     private final OrderService orderService;
-
-    private final JavaMailSender emailSender;
-
-    private final SpringTemplateEngine springTemplateEngine;
-
-
-
     @CrossOrigin
     @PostMapping
-    public ResponseEntity saveAll(@RequestBody Order orders) throws MessagingException{
-       orderService.saveOrder(orders);
-       EmailSenderService emailSenderService = new EmailSenderService(emailSender,springTemplateEngine);
-       emailSenderService.sendHtmlMessage(orders.getEmail());
-       return new ResponseEntity<>("Last stage", HttpStatus.OK);
+    public ResponseEntity saveAll(@RequestBody Order orders){
+       return ResponseEntity.ok(orderService.saveOrder(orders));
     }
 
     @GetMapping

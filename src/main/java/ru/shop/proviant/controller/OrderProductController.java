@@ -13,8 +13,6 @@ import ru.shop.proviant.repository.OrderProductPriceRepository;
 public class OrderProductController {
 
     private final OrderProductPriceRepository orderProductPriceRepository;
-    private OrderProducts orderProducts;
-
 
     @GetMapping("/ordersPer")
     public ResponseEntity findAll(){
