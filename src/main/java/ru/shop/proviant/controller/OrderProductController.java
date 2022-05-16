@@ -4,7 +4,7 @@ package ru.shop.proviant.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.shop.proviant.model.OrderProductPrice;
+import ru.shop.proviant.model.OrderProducts;
 import ru.shop.proviant.repository.OrderProductPriceRepository;
 
 @RestController
@@ -13,7 +13,7 @@ import ru.shop.proviant.repository.OrderProductPriceRepository;
 public class OrderProductController {
 
     private final OrderProductPriceRepository orderProductPriceRepository;
-    private OrderProductPrice orderProductPrice;
+    private OrderProducts orderProducts;
 
 
     @GetMapping("/ordersPer")

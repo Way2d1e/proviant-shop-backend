@@ -1,7 +1,7 @@
 package ru.shop.proviant.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.shop.proviant.model.OrderProductPrice;
+import ru.shop.proviant.model.OrderProducts;
 
-public interface OrderProductPriceRepository extends JpaRepository<OrderProductPrice, Integer> {
+public interface OrderProductPriceRepository extends JpaRepository<OrderProducts, Long> {
 }

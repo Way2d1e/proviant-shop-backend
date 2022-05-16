@@ -2,9 +2,6 @@ package ru.shop.proviant.model;
 
 
 import lombok.*;
-import org.hibernate.annotations.Cascade;
-import org.xmlunit.util.IterableNodeList;
-import ru.shop.proviant.repository.OrderRepository;
 
 import javax.persistence.*;
 import java.util.*;
@@ -15,9 +12,12 @@ import java.util.*;
 public class Order{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<OrderProducts> orderProducts;
 
     @Column(name = "surname_client")
     private String surname;

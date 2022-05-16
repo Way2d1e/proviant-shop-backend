@@ -3,13 +3,10 @@ package ru.shop.proviant.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Or;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import ru.shop.proviant.model.Order;
-import ru.shop.proviant.model.OrderProductPrice;
-import ru.shop.proviant.repository.OrderProductPriceRepository;
 import ru.shop.proviant.repository.OrderRepository;
 
 import javax.mail.MessagingException;
@@ -20,13 +17,18 @@ import javax.mail.MessagingException;
 public class OrderService {
     private final OrderRepository orderRepository;
 
-    public ResponseEntity findAll(){
-        return ResponseEntity.ok(this.orderRepository.findAll());
+
+
+    public ResponseEntity getAll(){
+        ResponseEntity all = ResponseEntity.ok(this.orderRepository.findAll());
+        return all;
     }
 
-    public Order saveOrder(Order orders){
-        return orderRepository.save(orders);
+    public ResponseEntity saveOrder(Order orders){
+        orderRepository.save(orders);
+        return new ResponseEntity<>("First Stage", HttpStatus.OK);
     }
+
 
 
 }
