@@ -21,5 +21,4 @@ public class OrderProducts {
     @Column(name = "price_per_product")
     private Integer pricePerProduct;
 
-
 }

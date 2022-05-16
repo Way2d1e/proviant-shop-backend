@@ -17,11 +17,8 @@ import javax.mail.MessagingException;
 public class OrderService {
     private final OrderRepository orderRepository;
 
-
-
     public ResponseEntity getAll(){
-        ResponseEntity all = ResponseEntity.ok(this.orderRepository.findAll());
-        return all;
+        return ResponseEntity.ok(this.orderRepository.findAll());
     }
 
     public ResponseEntity saveOrder(Order orders){
