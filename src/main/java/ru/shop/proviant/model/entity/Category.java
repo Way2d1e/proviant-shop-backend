@@ -1,17 +1,16 @@
 package ru.shop.proviant.model.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
+import java.util.List;
 
-@Entity(name = "category")
-@Setter
 @Getter
+@Entity
+@Setter
+@NoArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +21,7 @@ public class Category {
 
     @Column(name = "image")
     private String imagePath;
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> productList;
 }

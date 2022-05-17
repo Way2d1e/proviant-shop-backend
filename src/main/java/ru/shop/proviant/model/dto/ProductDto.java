@@ -8,8 +8,6 @@ import lombok.Data;
 public class ProductDto {
     private Integer id;
 
-    private Long categoryId;
-
     private String name;
 
     private Integer price;

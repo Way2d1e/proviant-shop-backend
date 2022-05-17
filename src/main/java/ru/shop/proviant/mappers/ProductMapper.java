@@ -12,7 +12,6 @@ import java.util.List;
 public interface ProductMapper {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
-    @Mapping(source = "product.category.id", target = "categoryId")
     ProductDto toDto(Product product);
 
     List<ProductDto> listDto(List<Product> products);
