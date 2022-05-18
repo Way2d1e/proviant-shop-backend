@@ -2,7 +2,9 @@ package ru.shop.proviant.config;
 
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
@@ -19,6 +21,7 @@ public class ThymeleafTemplateConfig {
         return springTemplateEngine;
     }
 
+    @Bean
     public ClassLoaderTemplateResolver emailTemplateResolver() {
         ClassLoaderTemplateResolver emailTemplateResolver = new ClassLoaderTemplateResolver();
         emailTemplateResolver.setPrefix("/templates/");
@@ -28,4 +31,6 @@ public class ThymeleafTemplateConfig {
         emailTemplateResolver.setCacheable(false);
         return emailTemplateResolver;
     }
+
+
 }

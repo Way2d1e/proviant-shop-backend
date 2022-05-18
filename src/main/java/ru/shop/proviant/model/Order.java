@@ -9,15 +9,15 @@ import java.util.*;
 @Getter
 @Setter
 @Entity(name = "orders")
-public class Order{
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<OrderProducts> orderProducts;
+    @OneToMany
+    private List<OrderItems> orderItems;
 
     @Column(name = "surname_client")
     private String surname;
@@ -39,5 +39,4 @@ public class Order{
 
     @Column(name = "email_client")
     private String email;
-
 }
