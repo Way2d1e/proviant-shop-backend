@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.shop.proviant.dto.OrderDto;
 import ru.shop.proviant.mapper.OrderMapper;
 import ru.shop.proviant.model.Order;
+import ru.shop.proviant.services.EmailSenderService;
 import ru.shop.proviant.services.OrderService;
 import ru.shop.proviant.services.impl.EmailSenderImpl;
 
@@ -19,7 +20,7 @@ public class OrderController {
 
     private final OrderService orderService;
     private final OrderMapper orderMapper;
-    private final EmailSenderImpl emailSender;
+    private final EmailSenderService emailSender;
 
     @PostMapping
     public OrderDto saveAll(@RequestBody OrderDto orderDto) throws MessagingException {
