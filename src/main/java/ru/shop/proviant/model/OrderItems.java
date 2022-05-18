@@ -7,13 +7,13 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Entity(name = "order_items")
+@Entity(name = "orders_items")
 public class OrderItems {
     
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "product_id")
     private Integer productID;

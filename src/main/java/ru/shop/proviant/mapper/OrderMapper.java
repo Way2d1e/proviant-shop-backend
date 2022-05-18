@@ -12,7 +12,7 @@ public interface OrderMapper {
 
     OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
 
-    @Mapping(source = "name",target = "name")
+    @Mapping(source = "id", target = "id")
     Order toDto(OrderDto orderDto);
 
 

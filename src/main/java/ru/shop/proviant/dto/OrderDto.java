@@ -4,16 +4,13 @@ package ru.shop.proviant.dto;
 import lombok.Data;
 import ru.shop.proviant.model.OrderItems;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import java.util.Date;
 import java.util.List;
 
 @Data
 public class OrderDto {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private List<OrderItems> orderItems;
 

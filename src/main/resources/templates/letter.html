@@ -24,7 +24,7 @@
         <div style="margin-bottom: 10px; font-size: 24px;"><strong>Для получения заказа: </strong>
             <ul style="margin-bottom: 10px; font-size: 20px;">
                 <li>Предъявите номер вашего заказа продавцу</li>
-                <li>Или распечатойте документы и покажите их продавцу3
+                <li>Или распечатойте документы и покажите их продавцу
                 </li>
             </ul>
         </div>
@@ -34,10 +34,10 @@
             style="width: 100%; border:#898989; font-size: 28px; text-align: center;">
             <div><strong> Список заказнных товаров</strong></div>
             <div
-                style="display: flex; margin-left: 50px; font-size: 18px;" th:each="instance : ${name.getOrderProducts()}">
-                <p style="color: #46B14B; margin-right: 5px">Наименование</p><p style="margin-right: 5px"> - </p><p style="margin-right: 15px" th:text="${instance.getProductName()}" > </p>
-                <p style="color: #46B14B; margin-right: 5px">Сумма</p><p style="margin-right: 5px"> - </p><p style="margin-right: 5px" th:text="${instance.getPricePerProduct()}"> </p><p>руб</p>
-                <p style="color: #46B14B; margin-left: 15px" th:text="${instance.getWeight()}" ></p> <p style="margin-left: 5px" th:text="${instance.getMeasuringType()}" ></p>
+                style="display: flex; margin-left: 50px; font-size: 18px;" th:each="order : ${name.getOrderItems()}">
+                <p style="color: #46B14B; margin-right: 5px">Наименование</p><p style="margin-right: 5px"> - </p><p style="margin-right: 15px" th:text="${order.getProductName()}" > </p>
+                <p style="color: #46B14B; margin-right: 5px">Сумма</p><p style="margin-right: 5px"> - </p><p style="margin-right: 5px" th:text="${order.getPricePerProduct()}"> </p><p>руб</p>
+                <p style="color: #46B14B; margin-left: 15px" th:text="${order.getWeight()}" ></p> <p style="margin-left: 5px" th:text="${order.getMeasuringType()}" ></p>
             </div>
         </div>
         <div style="margin-bottom: 10px; font-size: 26px;">Сумма заказа составляет: <strong th:text="${name.getOrderPrice()}">price_order</strong> руб</div>

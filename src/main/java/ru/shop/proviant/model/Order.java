@@ -1,10 +1,12 @@
 package ru.shop.proviant.model;
 
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,11 +14,12 @@ import java.util.*;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orders_id",referencedColumnName = "id")
     private List<OrderItems> orderItems;
 
     @Column(name = "surname_client")
