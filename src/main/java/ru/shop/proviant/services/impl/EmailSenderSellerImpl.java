@@ -25,7 +25,7 @@ public class EmailSenderSellerImpl implements EmailSenderService {
     public void sendHtmlMessage(Order order) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
-        helper.setTo("halp3ars@gmail.com");
+        helper.setTo("kirill_alexandr0vich@mail.ru");
         helper.setSubject("Заказ #" + order.getId());
         Context context = new Context();
         context.setVariable("name", order);
