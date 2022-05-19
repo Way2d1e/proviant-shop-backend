@@ -7,7 +7,8 @@ import ru.shop.proviant.mapper.OrderMapper;
 import ru.shop.proviant.model.Order;
 import ru.shop.proviant.services.EmailSenderService;
 import ru.shop.proviant.services.OrderService;
-import ru.shop.proviant.services.impl.EmailSenderImpl;
+import ru.shop.proviant.services.impl.EmailSenderClientImpl;
+import ru.shop.proviant.services.impl.EmailSenderSellerImpl;
 
 import javax.mail.MessagingException;
 import java.util.List;
@@ -20,13 +21,15 @@ public class OrderController {
 
     private final OrderService orderService;
     private final OrderMapper orderMapper;
-    private final EmailSenderService emailSender;
+    private final EmailSenderClientImpl emailSenderClient;
+    private final EmailSenderSellerImpl emailSenderSeller;
 
     @PostMapping
     public OrderDto saveAll(@RequestBody OrderDto orderDto) throws MessagingException {
         Order order = orderMapper.toDto(orderDto);
         orderService.saveOrder(order);
-        emailSender.sendHtmlMessage(order);
+        emailSenderClient.sendHtmlMessage(order);
+        emailSenderSeller.sendHtmlMessage(order);
         return orderDto;
     }
 
