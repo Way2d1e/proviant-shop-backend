@@ -31,9 +31,9 @@ public class CategoryController {
         return categoryMapper.toListDto(categoriesEntity);
     }
 
-    @GetMapping("/category/{id}")
-    public List<ProductDto> getProduct(@PathVariable Long id) {
-        List<Product> listEntityProduct = categoryService.getAllProductFromCategory(id);
+    @GetMapping("/category/{categoryId}/product")
+    public List<ProductDto> getProduct(@PathVariable Long categoryId) {
+        List<Product> listEntityProduct = categoryService.getAllProductFromCategory(categoryId);
         return productMapper.listDto(listEntityProduct);
     }
 }

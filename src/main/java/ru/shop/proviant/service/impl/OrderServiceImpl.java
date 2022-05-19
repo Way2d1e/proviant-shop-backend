@@ -7,6 +7,8 @@ import ru.shop.proviant.model.entity.Order;
 import ru.shop.proviant.repository.OrderRepository;
 import ru.shop.proviant.service.OrderService;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,8 +19,22 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public void saveOrder(Order order){
+    public void saveOrder(Order order) {
         orderRepository.save(order);
+    }
+
+    @Override
+    public BigDecimal sumPriceAllOrders() {
+        List<Order> orders = orderRepository.findAll();
+        List<BigDecimal> priceOrders = new ArrayList<>();
+        for(Order price : orders) {
+            priceOrders.add(price.getPrice());
+        }
+        BigDecimal sumPriceAllOrders = BigDecimal.ZERO;
+        for (BigDecimal price : priceOrders) {
+            sumPriceAllOrders.add(price);
+        }
+        return sumPriceAllOrders;
     }
 
     @Override
