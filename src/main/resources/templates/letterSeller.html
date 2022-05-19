@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" style="width:100%; background-color: #FCFFF6;" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <title>Заказ в магазине "Провиант"</title>
+</head>
+
+<body style=" height: 100%; max-width: 750px; font-family: 'Montserrat', sans-serif; text-align: center;">
+    <table style="display: flex; flex-direction:column; align-items: center; gap: 15px;">
+        <header
+            style=" height: 75px; width: 100%;  margin-bottom: 10px; background-color: #D3EAC3; text-align: center;">
+           <img src="http://i.yapx.ru/R7NVY.png" height="60" alt="Логотип компании"> 
+        </header>
+        <div style="font-size: 36px; font-weight: bold; text-align: center">Заказ # <span th:text="${name.getId()}"></span></div>
+        <div style="margin: 10px 0; font-size: 20px; text-align: center"> Дата и время: <span  th:text="${name.getOrderDate().getDate()}"/>.0<span th:text="${name.getOrderDate().getMonth() + 1}"/></div>
+        <div style="margin-bottom: 10px; font-size: 28px; font-weight: bold; text-align: center">Данные о покупателе:</div>
+        <div style="margin-bottom: 10px; font-size: 20px;" th:text="${name.getSurname()}">(вставить фамилию)</div>
+        <div style="margin-bottom: 10px; font-size: 20px;" th:text="${name.getName()}">(вставить имя)</div>
+        <div style="margin-bottom: 10px; font-size: 20px;" th:text="${name.getMiddleName()}">(вставить отчество)</div>
+        <div style="margin-bottom: 10px; font-size: 20px;" th:text="${name.getPhoneNumber()}">(вставить номер телефона)</div>
+        <div style="margin-bottom: 10px; font-size: 20px;" th:text="${name.getEmail()}">(вставить почту покупателя)</div>
+        <div
+            style="width: 100%; border:#898989; font-size: 28px;">
+            <div style="margin-bottom: 10px; font-size: 28px; font-weight: bold; text-align: center">Список заказанных товаров</div>
+            <div
+                style="display: flex; margin-left: 50px; font-size: 18px; text-align: center" th:each="order : ${name.getOrderItems()}">
+                <p style="color: #46B14B; margin-right: 5px">Наименование</p><p style="margin-right: 5px"> - </p><p style="margin-right: 15px" th:text="${order.getProductName()}" > </p>
+                <p style="color: #46B14B; margin-right: 5px">Сумма</p><p style="margin-right: 5px"> - </p><p style="margin-right: 5px" th:text="${order.getPricePerProduct()}"> </p><p>руб</p>
+                <p style="color: #46B14B; margin-left: 15px" th:text="${order.getWeight()}" ></p> <p style="margin-left: 5px" th:text="${order.getMeasuringType()}" ></p>
+            </div>
+        </div>
+        <div style="margin-bottom: 10px; font-size: 28px; font-weight: bold; text-align: center">Сумма заказа составляет: <strong th:text="${name.getOrderPrice()}"></strong> руб</div>
+        <tr
+            style=" height: 75px; width: 100%; margin-bottom: 10px; background-color: #D3EAC3; font-size: 20px;">
+            <td  style="width: 100%; padding: 0 50px">Вы получили это
+                письмо, потому что покупатель сделал новый заказ на сайте <strong>proviant31.ru</strong></td>
+        </tr>
+    </table>
+</body>
+
+</html>
