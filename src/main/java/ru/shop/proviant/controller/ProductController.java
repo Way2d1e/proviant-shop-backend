@@ -2,7 +2,7 @@ package ru.shop.proviant.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.shop.proviant.mappers.ProductMapper;
+import ru.shop.proviant.mapper.ProductMapper;
 import ru.shop.proviant.model.dto.ProductDto;
 import ru.shop.proviant.model.entity.Product;
 import ru.shop.proviant.service.ProductService;

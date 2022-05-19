@@ -2,7 +2,7 @@ package ru.shop.proviant.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import ru.shop.proviant.model.entity.dto.ProductDto;
+import ru.shop.proviant.model.dto.ProductDto;
 import ru.shop.proviant.model.entity.Product;
 
 import java.util.List;
