@@ -2,10 +2,9 @@ package ru.shop.proviant.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.shop.proviant.dto.OrderDto;
+import ru.shop.proviant.model.dto.OrderDto;
 import ru.shop.proviant.mapper.OrderMapper;
-import ru.shop.proviant.model.Order;
-import ru.shop.proviant.services.EmailSenderService;
+import ru.shop.proviant.model.entity.Order;
 import ru.shop.proviant.services.OrderService;
 import ru.shop.proviant.services.impl.EmailSenderClientImpl;
 import ru.shop.proviant.services.impl.EmailSenderSellerImpl;

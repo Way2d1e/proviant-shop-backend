@@ -3,7 +3,7 @@ package ru.shop.proviant.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.shop.proviant.model.Order;
+import ru.shop.proviant.model.entity.Order;
 import ru.shop.proviant.repository.OrderRepository;
 import ru.shop.proviant.services.OrderService;
 

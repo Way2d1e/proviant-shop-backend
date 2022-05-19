@@ -6,7 +6,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
-import ru.shop.proviant.model.Order;
+import ru.shop.proviant.model.entity.Order;
 import ru.shop.proviant.services.EmailSenderService;
 
 import javax.mail.MessagingException;

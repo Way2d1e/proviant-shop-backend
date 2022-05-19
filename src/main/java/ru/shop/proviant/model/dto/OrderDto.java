@@ -1,8 +1,8 @@
-package ru.shop.proviant.dto;
+package ru.shop.proviant.model.dto;
 
 
 import lombok.Data;
-import ru.shop.proviant.model.OrderItems;
+import ru.shop.proviant.model.entity.OrderItems;
 
 import java.util.Date;
 import java.util.List;

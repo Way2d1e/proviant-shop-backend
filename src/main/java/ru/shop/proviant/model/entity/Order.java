@@ -1,4 +1,4 @@
-package ru.shop.proviant.model;
+package ru.shop.proviant.model.entity;
 
 
 import lombok.Getter;
