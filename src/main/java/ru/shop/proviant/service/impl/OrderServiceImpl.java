@@ -1,11 +1,11 @@
-package ru.shop.proviant.services.impl;
+package ru.shop.proviant.service.impl;
 
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.shop.proviant.model.entity.Order;
 import ru.shop.proviant.repository.OrderRepository;
-import ru.shop.proviant.services.OrderService;
+import ru.shop.proviant.service.OrderService;
 
 import java.util.List;
 
@@ -17,8 +17,8 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public Order saveOrder(Order order){
-        return orderRepository.save(order);
+    public void saveOrder(Order order){
+        orderRepository.save(order);
     }
 
     @Override

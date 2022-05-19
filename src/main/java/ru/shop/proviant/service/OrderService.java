@@ -1,4 +1,4 @@
-package ru.shop.proviant.services;
+package ru.shop.proviant.service;
 
 import ru.shop.proviant.model.entity.Order;
 
@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrderService {
 
-    Order saveOrder(Order order) throws MessagingException;
+    void saveOrder(Order order) throws MessagingException;
 
     List<Order> getCategory();
 }
