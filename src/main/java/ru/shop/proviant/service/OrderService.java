@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrderService {
 
-    Order saveOrder(Order order) throws MessagingException;
+    void saveOrder(Order order) throws MessagingException;
 
     List<Order> getCategory();
 }
