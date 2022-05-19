@@ -1,4 +1,4 @@
-package ru.shop.proviant.services.impl;
+package ru.shop.proviant.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import ru.shop.proviant.model.entity.Order;
-import ru.shop.proviant.services.EmailSenderService;
+import ru.shop.proviant.service.EmailSenderService;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;

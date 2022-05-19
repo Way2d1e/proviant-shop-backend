@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.shop.proviant.model.dto.OrderDto;
 import ru.shop.proviant.mapper.OrderMapper;
 import ru.shop.proviant.model.entity.Order;
-import ru.shop.proviant.services.OrderService;
-import ru.shop.proviant.services.impl.EmailSenderClientImpl;
-import ru.shop.proviant.services.impl.EmailSenderSellerImpl;
+import ru.shop.proviant.service.OrderService;
+import ru.shop.proviant.service.impl.EmailSenderClientImpl;
+import ru.shop.proviant.service.impl.EmailSenderSellerImpl;
 
 import javax.mail.MessagingException;
 import java.util.List;

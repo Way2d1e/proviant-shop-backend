@@ -1,4 +1,4 @@
-package ru.shop.proviant.services;
+package ru.shop.proviant.service;
 
 
 import ru.shop.proviant.model.entity.Order;
