@@ -18,9 +18,9 @@
            <img src="http://i.yapx.ru/R7NVY.png" height="60" alt="Логотип компании"> </header>
         <div style="margin-bottom: 10px; font-size: 36px;"><strong>Спасибо за заказ</strong></div>
         <div style="margin-bottom: 10px; font-size: 28px;">
-         <strong th:text="${name.getName()}"></strong> ваш заказ #<strong th:text="${name.getId()}"></strong> ждет оплаты!</div>
+         <strong th:text="${order.getName()}"></strong> ваш заказ #<strong th:text="${order.getId()}"></strong> ждет оплаты!</div>
         <div style="margin-bottom: 10px; font-size: 20px;">Заказанные товары будут ожитать вас по адресу Красная Яруга д.41</div>
-        <div style="margin-bottom: 10px; font-size: 20px;">Заказ будет храниться в течении 24 часов после <strong th:text="${name.getOrderDate().getDate()}"/><strong>.0</strong><strong th:text="${name.getOrderDate().getMonth() + 1}"/></div>
+        <div style="margin-bottom: 10px; font-size: 20px;">Заказ будет храниться в течении 24 часов после <strong th:text="${order.getOrderDate().getDate()}"/><strong>.0</strong><strong th:text="${order.getOrderDate().getMonth() + 1}"/></div>
         <div style="margin-bottom: 10px; font-size: 24px;"><strong>Для получения заказа: </strong>
             <ul style="margin-bottom: 10px; font-size: 20px;">
                 <li>Предъявите номер вашего заказа продавцу</li>
@@ -34,13 +34,13 @@
             style="width: 100%; border:#898989; font-size: 28px; text-align: center;">
             <div><strong> Список заказнных товаров</strong></div>
             <div
-                style="display: flex; margin-left: 50px; font-size: 18px;" th:each="order : ${name.getOrderItems()}">
-                <p style="color: #46B14B; margin-right: 5px">Наименование</p><p style="margin-right: 5px"> - </p><p style="margin-right: 15px" th:text="${order.getProductName()}" > </p>
+                style="display: flex; margin-left: 50px; font-size: 18px;" th:each="order : ${order.getOrderItems()}">
+                <p style="color: #46B14B; margin-right: 5px">Наименование</p><p style="margin-right: 5px"> - </p><p style="margin-right: 15px" > </p>
                 <p style="color: #46B14B; margin-right: 5px">Сумма</p><p style="margin-right: 5px"> - </p><p style="margin-right: 5px" th:text="${order.getPricePerProduct()}"> </p><p>руб</p>
                 <p style="color: #46B14B; margin-left: 15px" th:text="${order.getWeight()}" ></p> <p style="margin-left: 5px" th:text="${order.getMeasuringType()}" ></p>
             </div>
         </div>
-        <div style="margin-bottom: 10px; font-size: 26px;">Сумма заказа составляет: <strong th:text="${name.getOrderPrice()}">price_order</strong> руб</div>
+        <div style="margin-bottom: 10px; font-size: 26px;">Сумма заказа составляет: <strong th:text="${order.getPrice()}">price_order</strong> руб</div>
         <tr
             style=" height: 75px; width: 100%; margin-bottom: 10px; background-color: #D3EAC3; text-align: center; font-size: 20px;">
             <td>Вы получили этот

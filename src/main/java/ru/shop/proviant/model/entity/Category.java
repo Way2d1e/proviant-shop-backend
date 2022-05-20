@@ -3,7 +3,7 @@ package ru.shop.proviant.model.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Entity
 @Setter
-@CrossOrigin
+@NoArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +20,13 @@ public class Category {
     @Column(name = "name")
     private String name;
 
+
     @Column(name = "image")
     private String imagePath;
 
     @Column(name = "name_en")
     private String nameEnglish;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category")
     private List<Product> productList;
 }

@@ -1,24 +1,26 @@
 package ru.shop.proviant.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
-@Entity(name = "product")
-@CrossOrigin
+@Entity
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "category_id")
+    @JsonIgnore
+    @ManyToOne()
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @Column(name = "name")
@@ -27,12 +29,13 @@ public class Product {
     @Column(name = "price")
     private BigDecimal price;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "product")
+    private List<OrderItem> orderItem;
+
     @Column(name = "image")
     private String imagePath;
 
     @Column(name = "type_measuring")
     private String typeMeasuring;
-
-    @Column(name = "default_value")
-    private Double defaultValue;
 }
