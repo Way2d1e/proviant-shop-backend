@@ -13,6 +13,7 @@ import ru.shop.proviant.service.OrderService;
 import ru.shop.proviant.service.impl.EmailSenderImpl;
 
 import javax.mail.MessagingException;
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @RestController
@@ -35,6 +36,10 @@ public class OrderController {
 //        emailSender.sendHtmlMessage(order,"letterSeller.html");
         return orderDto;
     }
+//    @PostMapping
+//    public ResponseEntity saveAll(@RequestBody Order order){
+//        return ResponseEntity.ok(orderRepository.save(order));
+//    }
 
 
 //    @GetMapping

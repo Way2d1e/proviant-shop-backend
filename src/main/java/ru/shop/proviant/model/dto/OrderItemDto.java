@@ -9,8 +9,6 @@ import java.util.List;
 @Data
 public class OrderItemDto {
 
-    private Long id;
-
     private Product product;
 
     private Double weight;

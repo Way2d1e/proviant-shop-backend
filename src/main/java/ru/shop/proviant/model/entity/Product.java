@@ -23,15 +23,16 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "product",cascade = CascadeType.MERGE)
+    private List<OrderItem> orderItems;
+
+
     @Column(name = "name")
     private String name;
 
     @Column(name = "price")
     private BigDecimal price;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "product")
-    private List<OrderItem> orderItem;
 
     @Column(name = "image")
     private String imagePath;

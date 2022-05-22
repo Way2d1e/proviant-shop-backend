@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class OrderDto {
 
-    private List<OrderItemDto> orderItem;
+    private List<OrderItemDto> orderItems;
 
     private Client client;
 
