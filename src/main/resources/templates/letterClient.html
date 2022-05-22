@@ -20,7 +20,7 @@
         <div style="margin-bottom: 10px; font-size: 28px;">
          <strong th:text="${order.getClient().getName()}"></strong> ваш заказ #<strong th:text="${order.getId()}"></strong> ждет оплаты!</div>
         <div style="margin-bottom: 10px; font-size: 20px;">Заказанные товары будут ожитать вас по адресу Красная Яруга д.41</div>
-        <div style="margin-bottom: 10px; font-size: 20px;">Заказ будет храниться в течении 24 часов после <strong th:text="${order.getDate().getDate()}"/><strong>.0</strong><strong th:text="${order.getDate().getMonth() + 1}"/></div>
+        <div style="margin-bottom: 10px; font-size: 20px;">Заказ будет храниться в течении 24 часов после <strong th:text="${order.getDate().getDate()}"/><strong>.</strong><strong th:text="${order.getDate().getMonth() + 1}"/></div>
         <div style="margin-bottom: 10px; font-size: 24px;"><strong>Для получения заказа: </strong>
             <ul style="margin-bottom: 10px; font-size: 20px;">
                 <li>Предъявите номер вашего заказа продавцу</li>

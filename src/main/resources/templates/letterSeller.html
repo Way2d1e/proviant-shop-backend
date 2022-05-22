@@ -18,7 +18,7 @@
            <img src="http://i.yapx.ru/R7NVY.png" height="60" alt="Логотип компании"> 
         </header>
         <div style="font-size: 36px; font-weight: bold; text-align: center">Заказ # <span th:text="${order.getId()}"></span></div>
-        <div style="margin: 10px 0; font-size: 20px; text-align: center"> Дата и время: <span  th:text="${order.getDate().getDate()}"/>.0<span th:text="${order.getDate().getMonth() + 1}"/> </div>
+        <div style="margin: 10px 0; font-size: 20px; text-align: center"> Дата и время: <span  th:text="${order.getDate().getDate()}"/>.<span th:text="${order.getDate().getMonth() + 1}"/> </div>
         <div style="margin-bottom: 10px; font-size: 28px; font-weight: bold; text-align: center">Данные о покупателе:</div>
         <div style="margin-bottom: 10px; font-size: 20px;" th:text="${order.getClient().getSurname()}">(вставить фамилию)</div>
         <div style="margin-bottom: 10px; font-size: 20px;" th:text="${order.getClient().getName()}">(вставить имя)</div>

@@ -42,6 +42,4 @@ public class Product {
     @OneToMany(mappedBy = "product",cascade = CascadeType.MERGE)
     private List<OrderItem> orderItems;
 
-
-
 }
