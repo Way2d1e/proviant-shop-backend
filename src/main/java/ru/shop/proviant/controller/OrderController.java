@@ -1,6 +1,7 @@
 package ru.shop.proviant.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.shop.proviant.model.dto.OrderDto;
 import ru.shop.proviant.mapper.OrderMapper;
@@ -34,9 +35,16 @@ public class OrderController {
     }
 
 
+//    @GetMapping
+//    public List<Order> getOrders() {
+//        return orderService.getOrders();
+//    }
+
     @GetMapping
-    public List<Order> getOrders() {
-        return orderService.getOrders();
+    public ResponseEntity getOrders() {
+        return ResponseEntity.ok(orderRepository.findAll());
     }
+
+
 
 }

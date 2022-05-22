@@ -36,13 +36,11 @@ public class Order {
     })
     private Client client = new Client();
 
-    @CreationTimestamp
     @Column(name = "date_order")
+    @CreationTimestamp
     private Date date;
 
     @Column(name = "price_order")
     private BigDecimal price;
-
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
 }
