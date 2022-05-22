@@ -1,11 +1,13 @@
 package ru.shop.proviant.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 import net.minidev.json.annotate.JsonIgnore;
+import ru.shop.proviant.model.EntityIdResolver;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -28,9 +30,9 @@ public class OrderItem {
     private Double weight;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id",scope = Product.class)
-//    @JsonIdentityReference(alwaysAsId = true)
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id",scope = Product.class,resolver = EntityIdResolver.class)
     @JoinColumn(name = "product_id")
-    private Product product;
+    private Product product = new Product();
 
 }

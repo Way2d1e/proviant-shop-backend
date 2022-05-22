@@ -13,13 +13,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
     private String name;
-
 
     @Column(name = "image")
     private String imagePath;

@@ -13,7 +13,7 @@ public interface OrderMapper {
     OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
 
     @Mapping(source = "orderItems",target = "orderItems")
-    Order toDto(OrderDto orderDto);
+    Order toEntity(OrderDto orderDto);
 
 
 }

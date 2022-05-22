@@ -18,6 +18,7 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> getCategories() {
         return categoryRepository.findAll();
     }
+
     @Override
     public List<Product> getAllProductFromCategory(Long id) {
         return categoryRepository.findById(id).map(Category::getProductList).orElse(null);
