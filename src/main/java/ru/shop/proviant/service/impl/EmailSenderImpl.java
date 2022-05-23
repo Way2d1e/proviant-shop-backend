@@ -13,23 +13,27 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
 
+
 @Service
 @RequiredArgsConstructor
-public class EmailSenderSellerImpl implements EmailSenderService {
+public class EmailSenderImpl implements EmailSenderService {
 
     private final JavaMailSender javaMailSender;
-
     private final SpringTemplateEngine springTemplateEngine;
 
     @Override
-    public void sendHtmlMessage(Order order) throws MessagingException {
+    public void sendHtmlMessage(Order order,String template) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
-        helper.setTo("kirill_alexandr0vich@mail.ru");
+        if(template.equals("letterSeller.html")){
+            helper.setTo("halp3ars@gmail.com");
+        }else {
+            helper.setTo(order.getClient().getEmail());
+        }
         helper.setSubject("Заказ #" + order.getId());
         Context context = new Context();
-        context.setVariable("name", order);
-        String html = springTemplateEngine.process("letterSeller.html", context);
+        context.setVariable("order", order);
+        String html = springTemplateEngine.process(template, context);
         helper.setText(html, true);
         javaMailSender.send(message);
     }

@@ -19,5 +19,6 @@ public class ProductDto {
     private String imagePath;
 
     private String typeMeasuring;
+
     private Double defaultValue;
 }

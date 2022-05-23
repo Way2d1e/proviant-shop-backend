@@ -7,19 +7,13 @@ import org.mapstruct.factory.Mappers;
 import ru.shop.proviant.model.dto.OrderDto;
 import ru.shop.proviant.model.entity.Order;
 
-import java.util.List;
-
 @Mapper
 public interface OrderMapper {
 
     OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
 
-//    @Mapping(source = "id", target = "id")
-    Order toDto(OrderDto orderDto);
-
-    Order convertDtoToEntity(OrderDto orderDto);
-
-    List<OrderDto> convertListEntityToListDto(List<Order> orders);
+    @Mapping(source = "orderItems",target = "orderItems")
+    Order toEntity(OrderDto orderDto);
 
 
 }
