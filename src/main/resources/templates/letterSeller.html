@@ -30,9 +30,9 @@
             <div style="margin-bottom: 10px; font-size: 28px; font-weight: bold; text-align: center">Список заказанных товаров</div>
             <div
                 style="display: flex; margin-left: 50px; font-size: 18px; text-align: center" th:each="orderPropetries : ${order.getOrderItems()}">
-                <p style="color: #46B14B; margin-right: 5px">Наименование</p><p style="margin-right: 5px"> - </p><p style="margin-right: 15px" th:text="${orderPropetries.getProduct().getName()}"  t> </p>
+                <p style="color: #46B14B; margin-right: 5px">Наименование</p><p style="margin-right: 5px"> - </p><p style="margin-right: 15px" th:text="${orderPropetries.getProductId().getName()}" t> </p>
                 <p style="color: #46B14B; margin-right: 5px">Сумма</p><p style="margin-right: 5px"> - </p><p style="margin-right: 5px" th:text="${orderPropetries.getPrice()}"> </p><p>руб</p>
-                <p style="color: #46B14B; margin-left: 15px" th:text="${orderPropetries.getWeight()}" ></p> <p style="margin-left: 5px" th:text="${orderPropetries.getProduct().getTypeMeasuring()}" ></p>
+                <p style="color: #46B14B; margin-left: 15px" th:text="${orderPropetries.getWeight()}" ></p> <p style="margin-left: 5px" th:text="${orderPropetries.getProductId().getTypeMeasuring()}" ></p>
             </div>
         </div>
         <div style="margin-bottom: 10px; font-size: 28px; font-weight: bold; text-align: center">Сумма заказа составляет: <strong th:text="${order.getPrice()}"/> руб</div>

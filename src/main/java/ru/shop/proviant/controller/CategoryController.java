@@ -2,10 +2,7 @@ package ru.shop.proviant.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.shop.proviant.mapper.CategoryMapper;
 import ru.shop.proviant.mapper.ProductMapper;
 import ru.shop.proviant.model.dto.CategoryDto;
@@ -19,21 +16,22 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin
+@RequestMapping("/category")
 public class CategoryController {
     private final CategoryService categoryService;
     private final CategoryMapper categoryMapper;
     private final ProductMapper productMapper;
 
-    @GetMapping("/category")
+    @GetMapping
     public List<CategoryDto> getAllCategory() {
         List<Category> categoriesEntity = categoryService.getCategories();
 
         return categoryMapper.toListDto(categoriesEntity);
     }
 
-    @GetMapping("/category/{id}")
-    public List<ProductDto> getProduct(@PathVariable Long id) {
-        List<Product> listEntityProduct = categoryService.getAllProductFromCategory(id);
+    @GetMapping("/{categoryId}/product")
+    public List<ProductDto> getProduct(@PathVariable Long categoryId) {
+        List<Product> listEntityProduct = categoryService.getAllProductFromCategory(categoryId);
         return productMapper.listDto(listEntityProduct);
     }
 }
