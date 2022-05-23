@@ -1,9 +1,6 @@
 package ru.shop.proviant.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,7 +36,7 @@ public class Product {
     private Category category;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "product",cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "productId",cascade = CascadeType.MERGE)
     private List<OrderItem> orderItems;
 
 }
