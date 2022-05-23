@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import ru.shop.proviant.config.DataFormatter;
+import ru.shop.proviant.config.propetries.MailProperties;
 import ru.shop.proviant.model.entity.Order;
 import ru.shop.proviant.service.EmailSenderService;
 
@@ -19,20 +20,22 @@ import java.nio.charset.StandardCharsets;
 @RequiredArgsConstructor
 public class EmailSenderImpl implements EmailSenderService {
 
+    private final String ORDER_INDEX = "Заказ #";
     private final JavaMailSender javaMailSender;
     private final SpringTemplateEngine springTemplateEngine;
+    private final MailProperties mailProperties;
 
 
     @Override
     public void sendHtmlMessage(Order order,String template) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
-        if(template.equals("letterSeller.html")){
-            helper.setTo("halp3ars@gmail.com");
+        if(template.equals(mailProperties.getTemplateName())){
+            helper.setTo(mailProperties.getMailSeller());
         }else {
             helper.setTo(order.getClient().getEmail());
         }
-        helper.setSubject("Заказ #" + order.getId());
+        helper.setSubject(ORDER_INDEX + order.getId());
         DataFormatter dataFormatter = new DataFormatter(order);
         Context context = new Context();
         context.setVariable("dateFormat", dataFormatter);
