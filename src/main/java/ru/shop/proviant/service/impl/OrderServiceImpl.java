@@ -28,8 +28,9 @@ public class OrderServiceImpl implements OrderService {
         List<Order> orders = orderRepository.findAll();
 
         BigDecimal sumPriceAllOrders = BigDecimal.ZERO;
-        for(Order price : orders) {
-            sumPriceAllOrders.add(price.getPrice());
+        for (int orderIndex = 0;orderIndex < orders.size(); orderIndex++) {
+            BigDecimal price = orders.get(orderIndex).getPrice();
+            sumPriceAllOrders = sumPriceAllOrders.add(price);
         }
 
         return sumPriceAllOrders;
