@@ -1,17 +1,14 @@
 package ru.shop.proviant.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
-import net.minidev.json.annotate.JsonIgnore;
 import ru.shop.proviant.model.EntityIdResolver;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Getter
 @Setter
@@ -34,7 +31,7 @@ public class OrderItem {
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id"
             ,scope = Product.class,resolver = EntityIdResolver.class)
     @JoinColumn(name = "product_id")
-    private Product product = new Product();
+    private Product productId = new Product();
 
 
 
