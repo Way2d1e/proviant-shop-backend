@@ -8,13 +8,16 @@ import ru.shop.proviant.model.EntityIdResolver;
 import ru.shop.proviant.model.entity.Product;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 public class OrderItemDto {
 
     @JsonIdentityReference(alwaysAsId = true)
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id",scope = Product.class,resolver = EntityIdResolver.class)
-    private Product productId;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id",scope = Product.class,resolver = EntityIdResolver.class)
+    private Product product;
 
     private Double weight;
+
 }
