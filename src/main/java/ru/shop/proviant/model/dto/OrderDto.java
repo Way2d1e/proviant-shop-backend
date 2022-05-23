@@ -10,8 +10,6 @@ import java.util.List;
 public class OrderDto {
 
     private List<OrderItemDto> orderItems;
-
     private Client client;
-
 
 }

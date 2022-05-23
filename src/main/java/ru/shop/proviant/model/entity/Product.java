@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Getter
 @Setter
@@ -35,8 +34,5 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "productId",cascade = CascadeType.MERGE)
-    private List<OrderItem> orderItems;
 
 }

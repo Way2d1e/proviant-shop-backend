@@ -12,36 +12,57 @@
 </head>
 
 <body style=" height: 100%; max-width: 750px; font-family: 'Montserrat', sans-serif; text-align: center;">
-    <table style="display: flex; flex-direction:column; align-items: center; gap: 15px;">
-        <header
+<table style="display: flex; flex-direction:column; align-items: center; gap: 15px;">
+    <header
             style=" height: 75px; width: 100%;  margin-bottom: 10px; background-color: #D3EAC3; text-align: center;">
-           <img src="http://i.yapx.ru/R7NVY.png" height="60" alt="Логотип компании"> 
-        </header>
-        <div style="font-size: 36px; font-weight: bold; text-align: center">Заказ # <span th:text="${order.getId()}"></span></div>
-        <div style="margin: 10px 0; font-size: 20px; text-align: center"> Дата и время: <span th:text="${dateFormat.formatDate(order.getDate())}"/> </div>
-        <div style="margin-bottom: 10px; font-size: 28px; font-weight: bold; text-align: center">Данные о покупателе:</div>
-        <div style="margin-bottom: 10px; font-size: 20px;" th:text="${order.getClient().getSurname()}">(вставить фамилию)</div>
-        <div style="margin-bottom: 10px; font-size: 20px;" th:text="${order.getClient().getName()}">(вставить имя)</div>
-        <div style="margin-bottom: 10px; font-size: 20px;" th:text="${order.getClient().getMiddleName()}">(вставить отчество)</div>
-        <div style="margin-bottom: 10px; font-size: 20px;" th:text="${order.getClient().getPhoneNumber()}">(вставить номер телефона)</div>
-        <div style="margin-bottom: 10px; font-size: 20px;" th:text="${order.getClient().getEmail()}">(вставить почту покупателя)</div>
-        <div
+        <img src="http://i.yapx.ru/R7NVY.png" height="60" alt="Логотип компании">
+    </header>
+    <div style="font-size: 36px; font-weight: bold; text-align: center">Заказ # <span th:text="${order.getId()}"></span>
+    </div>
+    <div style="margin: 10px 0; font-size: 20px; text-align: center"> Дата и время: <span
+            th:text="${dateFormat.formatDate(order.getDate())}"/></div>
+    <div style="margin-bottom: 10px; font-size: 28px; font-weight: bold; text-align: center">Данные о покупателе:</div>
+    <div style="margin-bottom: 10px; font-size: 20px;" th:text="${order.getClient().getSurname()}">(вставить фамилию)
+    </div>
+    <div style="margin-bottom: 10px; font-size: 20px;" th:text="${order.getClient().getName()}">(вставить имя)</div>
+    <div style="margin-bottom: 10px; font-size: 20px;" th:text="${order.getClient().getMiddleName()}">(вставить
+        отчество)
+    </div>
+    <div style="margin-bottom: 10px; font-size: 20px;" th:text="${order.getClient().getPhoneNumber()}">(вставить номер
+        телефона)
+    </div>
+    <div style="margin-bottom: 10px; font-size: 20px;" th:text="${order.getClient().getEmail()}">(вставить почту
+        покупателя)
+    </div>
+    <div
             style="width: 100%; border:#898989; font-size: 28px;">
-            <div style="margin-bottom: 10px; font-size: 28px; font-weight: bold; text-align: center">Список заказанных товаров</div>
-            <div
-                style="display: flex; margin-left: 50px; font-size: 18px; text-align: center" th:each="orderPropetries : ${order.getOrderItems()}">
-                <p style="color: #46B14B; margin-right: 5px">Наименование</p><p style="margin-right: 5px"> - </p><p style="margin-right: 15px" th:text="${orderPropetries.getProductId().getName()}" t> </p>
-                <p style="color: #46B14B; margin-right: 5px">Сумма</p><p style="margin-right: 5px"> - </p><p style="margin-right: 5px" th:text="${orderPropetries.getPrice()}"> </p><p>руб</p>
-                <p style="color: #46B14B; margin-left: 15px" th:text="${orderPropetries.getWeight()}" ></p> <p style="margin-left: 5px" th:text="${orderPropetries.getProductId().getTypeMeasuring()}" ></p>
-            </div>
+        <div style="margin-bottom: 10px; font-size: 28px; font-weight: bold; text-align: center">Список заказанных
+            товаров
         </div>
-        <div style="margin-bottom: 10px; font-size: 28px; font-weight: bold; text-align: center">Сумма заказа составляет: <strong th:text="${order.getPrice()}"/> руб</div>
-        <tr
+        <div
+                style="display: flex; margin-left: 50px; font-size: 18px; text-align: center"
+                th:each="products, counter: ${productList}">
+            <p style="color: #46B14B; margin-right: 5px">Наименование</p>
+            <p style="margin-right: 5px"> - </p>
+            <p style="margin-right: 15px" th:text="${products.getName()}" t></p>
+            <p style="color: #46B14B; margin-right: 5px">Сумма</p>
+            <p style="margin-right: 5px"> - </p>
+            <p style="margin-right: 5px" th:text="${products.getPrice()}"></p>
+            <p>руб</p>
+            <p style="color: #46B14B; margin-left: 15px"
+               th:text="${order.getOrderItems().get(counter.index).getWeight()}"/>
+            <p style="margin-left: 5px" th:text="${products.getTypeMeasuring()}"></p>
+        </div>
+    </div>
+    <div style="margin-bottom: 10px; font-size: 28px; font-weight: bold; text-align: center">Сумма заказа составляет:
+        <strong th:text="${order.getPrice()}"/> руб
+    </div>
+    <tr
             style=" height: 75px; width: 100%; margin-bottom: 10px; background-color: #D3EAC3; font-size: 20px;">
-            <td  style="width: 100%; padding: 0 50px">Вы получили это
-                письмо, потому что покупатель сделал новый заказ на сайте <strong>proviant31.ru</strong></td>
-        </tr>
-    </table>
+        <td style="width: 100%; padding: 0 50px">Вы получили это
+            письмо, потому что покупатель сделал новый заказ на сайте <strong>proviant31.ru</strong></td>
+    </tr>
+</table>
 </body>
 
 </html>
