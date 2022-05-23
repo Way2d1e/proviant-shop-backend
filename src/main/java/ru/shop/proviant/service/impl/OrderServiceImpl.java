@@ -30,14 +30,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public BigDecimal sumPriceAllOrders() {
         List<Order> orders = orderRepository.findAll();
-        List<BigDecimal> priceOrders = new ArrayList<>();
-        for(Order price : orders) {
-            priceOrders.add(price.getPrice());
-        }
+
         BigDecimal sumPriceAllOrders = BigDecimal.ZERO;
-        for (BigDecimal price : priceOrders) {
-            sumPriceAllOrders.add(price);
+        for(Order price : orders) {
+            sumPriceAllOrders.add(price.getPrice());
         }
+
         return sumPriceAllOrders;
     }
 
