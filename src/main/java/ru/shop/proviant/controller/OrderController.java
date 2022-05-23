@@ -25,13 +25,13 @@ public class OrderController {
     private final OrderRepository orderRepository;
 
     @PostMapping
-    public OrderDto saveAll(@RequestBody OrderDto orderDto) throws MessagingException {
+    public Long saveAll(@RequestBody OrderDto orderDto) throws MessagingException {
         Order order = orderMapper.toEntity(orderDto);
         order.setPrice(orderService.pricePerProduct(order.getOrderItems()));
         orderService.saveOrder(order);
         emailSender.sendHtmlMessage(order,"letterClient.html");
         emailSender.sendHtmlMessage(order,"letterSeller.html");
-        return orderDto;
+        return order.getId();
     }
 
 

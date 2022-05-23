@@ -6,6 +6,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
+import ru.shop.proviant.config.DataFormatter;
 import ru.shop.proviant.model.entity.Order;
 import ru.shop.proviant.service.EmailSenderService;
 
@@ -21,6 +22,7 @@ public class EmailSenderImpl implements EmailSenderService {
     private final JavaMailSender javaMailSender;
     private final SpringTemplateEngine springTemplateEngine;
 
+
     @Override
     public void sendHtmlMessage(Order order,String template) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -31,7 +33,9 @@ public class EmailSenderImpl implements EmailSenderService {
             helper.setTo(order.getClient().getEmail());
         }
         helper.setSubject("Заказ #" + order.getId());
+        DataFormatter dataFormatter = new DataFormatter(order);
         Context context = new Context();
+        context.setVariable("dateFormat", dataFormatter);
         context.setVariable("order", order);
         String html = springTemplateEngine.process(template, context);
         helper.setText(html, true);
