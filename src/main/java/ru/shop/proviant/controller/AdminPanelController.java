@@ -24,7 +24,7 @@ public class AdminPanelController {
     public ProductDto addProduct(@RequestBody ProductDto productDto) {
         Product product = productMapper.toEntity(productDto);
         productService.saveProduct(product);
-        return productDto;
+        return productMapper.toDto(product);
     }
 
     @DeleteMapping("/delete/{id}") // ready

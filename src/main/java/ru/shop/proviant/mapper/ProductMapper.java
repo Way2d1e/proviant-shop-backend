@@ -13,6 +13,7 @@ public interface ProductMapper {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
     @Mapping(source = "category.id", target = "categoryId")
+    @Mapping(source = "defaultValue", target = "defaultValue")
     ProductDto toDto(Product product);
 
     @Mapping(source = "id", target = "id")

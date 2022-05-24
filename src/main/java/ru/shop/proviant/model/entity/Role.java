@@ -11,7 +11,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
-@Table(name = "t_role")
+@Table(name = "role")
 @NoArgsConstructor
 public class Role implements GrantedAuthority {
     @Id
