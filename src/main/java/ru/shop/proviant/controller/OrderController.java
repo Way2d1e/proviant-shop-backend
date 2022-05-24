@@ -13,6 +13,7 @@ import ru.shop.proviant.service.ProductService;
 import ru.shop.proviant.service.impl.EmailSenderImpl;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -29,19 +30,19 @@ public class OrderController {
 
 
     @PostMapping
-    public void saveAll(@RequestBody OrderDto orderDto) throws MessagingException {
+    public Long saveAll(@RequestBody OrderDto orderDto) throws MessagingException {
         Order order = orderMapper.toEntity(orderDto);
-        List<Product> productList = productService.getListProduct(orderDto.getOrderItems());
-        order.setPrice(orderService.setAllPrices(order.getOrderItems(), productList));
         orderService.saveOrder(order);
-        getId(order);
-        emailSender.sendHtmlMessage(productList, order, "letterClient.html");
-        emailSender.sendHtmlMessage(productList, order, "letterSeller.html");
+        getId(order,orderDto);
+        return order.getId();
     }
 
     @Async
-    Long getId(Order order){
-        return order.getId();
+    void getId(Order order,OrderDto orderDto) throws MessagingException{
+        List<Product> productList = productService.getListProduct(orderDto.getOrderItems());
+        order.setPrice(orderService.setAllPrices(order.getOrderItems(), productList));
+        emailSender.sendHtmlMessage(productList, order, "letterClient.html");
+        emailSender.sendHtmlMessage(productList, order, "letterSeller.html");
     }
 
 
