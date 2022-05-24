@@ -9,11 +9,13 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import ru.shop.proviant.config.DataFormatter;
 import ru.shop.proviant.config.propetries.MailProperties;
 import ru.shop.proviant.model.entity.Order;
+import ru.shop.proviant.model.entity.Product;
 import ru.shop.proviant.service.EmailSenderService;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 
 @Service
@@ -27,11 +29,11 @@ public class EmailSenderImpl implements EmailSenderService {
 
 
     @Override
-    public void sendHtmlMessage(Order order,String template) throws MessagingException {
+    public void sendHtmlMessage(List<Product> productList, Order order, String template) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
         if(template.equals(mailProperties.getTemplateName())){
-            helper.setTo(mailProperties.getMailSeller());
+            helper.setTo(mailProperties.getSellerMail());
         }else {
             helper.setTo(order.getClient().getEmail());
         }
@@ -40,6 +42,7 @@ public class EmailSenderImpl implements EmailSenderService {
         Context context = new Context();
         context.setVariable("dateFormat", dataFormatter);
         context.setVariable("order", order);
+        context.setVariable("productList", productList);
         String html = springTemplateEngine.process(template, context);
         helper.setText(html, true);
         javaMailSender.send(message);

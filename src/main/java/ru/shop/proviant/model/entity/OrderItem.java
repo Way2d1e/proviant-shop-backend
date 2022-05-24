@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Setter
 @Entity(name = "orders_items")
 public class OrderItem {
-    
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,7 +24,5 @@ public class OrderItem {
 
     @Column(name = "product_id")
     private Long productId;
-
-
 
 }

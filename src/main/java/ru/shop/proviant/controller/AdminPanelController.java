@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.shop.proviant.mapper.ProductMapper;
 import ru.shop.proviant.model.dto.ProductDto;
 import ru.shop.proviant.model.entity.Product;
-import ru.shop.proviant.security.UserService;
 import ru.shop.proviant.service.OrderService;
 import ru.shop.proviant.service.ProductService;
 
@@ -34,7 +33,7 @@ public class AdminPanelController {
     }
 
     @GetMapping("/order/price") // ready
-    public BigDecimal getAllPriceProducts(){
+    public BigDecimal getAllPriceProducts() {
         return orderService.sumPriceAllOrders();
     }
 

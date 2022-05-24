@@ -6,7 +6,6 @@ import lombok.Data;
 public class OrderItemDto {
 
     private Long productId;
-
     private Double weight;
 
 }

@@ -3,18 +3,13 @@ package ru.shop.proviant.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.shop.proviant.model.dto.OrderDto;
-import ru.shop.proviant.model.dto.OrderItemDto;
 import ru.shop.proviant.model.entity.Order;
 import ru.shop.proviant.model.entity.OrderItem;
 import ru.shop.proviant.model.entity.Product;
 import ru.shop.proviant.repository.OrderRepository;
-import ru.shop.proviant.repository.ProductRepository;
 import ru.shop.proviant.service.OrderService;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,24 +18,18 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
-
-
     @Override
     public void saveOrder(Order order) {
         orderRepository.save(order);
     }
 
-
     @Override
     public BigDecimal sumPriceAllOrders() {
         List<Order> orders = orderRepository.findAll();
-        List<BigDecimal> priceOrders = new ArrayList<>();
-        for(Order price : orders) {
-            priceOrders.add(price.getPrice());
-        }
         BigDecimal sumPriceAllOrders = BigDecimal.ZERO;
-        for (BigDecimal price : priceOrders) {
-            sumPriceAllOrders.add(price);
+        for (int orderIndex = 0; orderIndex < orders.size(); orderIndex++) {
+            BigDecimal price = orders.get(orderIndex).getPrice();
+            sumPriceAllOrders = sumPriceAllOrders.add(price);
         }
         return sumPriceAllOrders;
     }
@@ -50,22 +39,16 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAll();
     }
 
-//    @Override
-//    public BigDecimal pricePerProduct(List<OrderItem> orderItem) {
-//        BigDecimal sum = BigDecimal.ZERO;
-//        for (int orderIndex = 0;orderIndex < orderItem.size(); orderIndex++) {
-//             BigDecimal price = orderItem.get(orderIndex).getProduct().getPrice();
-//             double weight = orderItem.get(orderIndex).getWeight();
-//             double itemPrice = price.intValue() * weight;
-//             sum = sum.add(BigDecimal.valueOf(itemPrice));
-//             orderItem.get(orderIndex).setPrice(BigDecimal.valueOf(itemPrice));
-//        }
-//        return sum;
-//    }
-
-
     @Override
-    public BigDecimal pricePerProduct(List<OrderItem> orderItem) {
-        return null;
+    public BigDecimal setAllPrices(List<OrderItem> orderItem, List<Product> productList) {
+        BigDecimal sumWholeOrder = BigDecimal.ZERO;
+        for (int productIndex = 0; productIndex < orderItem.size(); productIndex++) {
+            BigDecimal price = productList.get(productIndex).getPrice();
+            double weight = orderItem.get(productIndex).getWeight();
+            double itemPrice = price.intValue() * weight;
+            sumWholeOrder = sumWholeOrder.add(BigDecimal.valueOf(itemPrice));
+            orderItem.get(productIndex).setPrice(BigDecimal.valueOf(itemPrice));
+        }
+        return sumWholeOrder;
     }
 }

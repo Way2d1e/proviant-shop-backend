@@ -11,6 +11,5 @@ import ru.shop.proviant.config.propetries.MailProperties;
 public class ProviantApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProviantApplication.class, args);
-
     }
 }

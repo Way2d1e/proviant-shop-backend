@@ -4,11 +4,9 @@ package ru.shop.proviant.model.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -42,5 +40,6 @@ public class Order {
 
     @Column(name = "price_order")
     private BigDecimal price;
+
 
 }

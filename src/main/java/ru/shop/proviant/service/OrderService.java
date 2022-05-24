@@ -17,5 +17,5 @@ public interface OrderService {
 
     BigDecimal sumPriceAllOrders();
     List<Order> getOrders();
-    BigDecimal pricePerProduct(List<OrderItem> orderItem);
+    BigDecimal setAllPrices(List<OrderItem> orderItems,List<Product> productList);
 }
