@@ -25,7 +25,9 @@ class CategoryServiceImplUnitTest {
     public void getCategoriesTest() {
         categoryService.getCategories();
         Mockito.verify(categoryRepository, Mockito.only()).findAll();
+    }
+    @Test
+    void getAllProductFromCategoryTest() {
 
     }
-
 }

@@ -2,6 +2,8 @@ package ru.shop.proviant.service.impl;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import ru.shop.proviant.model.entity.Order;
 import ru.shop.proviant.model.entity.OrderItem;
@@ -10,6 +12,7 @@ import ru.shop.proviant.repository.OrderRepository;
 import ru.shop.proviant.service.OrderService;
 
 import java.math.BigDecimal;
+import java.net.http.HttpResponse;
 import java.util.List;
 
 
@@ -29,6 +32,10 @@ public class OrderServiceImpl implements OrderService {
         BigDecimal sumPriceAllOrders = BigDecimal.ZERO;
         for (int orderIndex = 0; orderIndex < orders.size(); orderIndex++) {
             BigDecimal price = orders.get(orderIndex).getPrice();
+            if (price == null) {
+                throw  new NullPointerException("price in order is null");
+            }
+
             sumPriceAllOrders = sumPriceAllOrders.add(price);
         }
         return sumPriceAllOrders;
