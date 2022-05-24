@@ -7,8 +7,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ru.shop.proviant.model.entity.Category;
+import ru.shop.proviant.model.entity.Product;
 import ru.shop.proviant.repository.CategoryRepository;
 import ru.shop.proviant.service.CategoryService;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

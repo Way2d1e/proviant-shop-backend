@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
         for (int orderIndex = 0; orderIndex < orders.size(); orderIndex++) {
             BigDecimal price = orders.get(orderIndex).getPrice();
             if (price == null) {
-                throw  new NullPointerException("price in order is null");
+                return null;
             }
 
             sumPriceAllOrders = sumPriceAllOrders.add(price);
