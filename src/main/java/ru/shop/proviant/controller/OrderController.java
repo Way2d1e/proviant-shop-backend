@@ -1,7 +1,8 @@
 package ru.shop.proviant.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 import ru.shop.proviant.mapper.OrderMapper;
 import ru.shop.proviant.model.dto.OrderDto;
@@ -29,15 +30,20 @@ public class OrderController {
     @PostMapping
     public Long saveAll(@RequestBody OrderDto orderDto) throws MessagingException {
         Order order = orderMapper.toEntity(orderDto);
-        List<Product> productList = productService.getListProduct(orderDto.getOrderItems());
-        order.setPrice(orderService.setAllPrices(order.getOrderItems(), productList));
         orderService.saveOrder(order);
-        emailSender.sendHtmlMessage(productList, order, "letterClient.html");
-        emailSender.sendHtmlMessage(productList, order, "letterSeller.html");
+        save(order,orderDto);
         return order.getId();
     }
 
 
+    @Async
+    HttpStatus save(Order order,OrderDto orderDto) throws MessagingException{
+        List<Product> productList = productService.getListProduct(orderDto.getOrderItems());
+        order.setPrice(orderService.setAllPrices(order.getOrderItems(), productList));
+        emailSender.sendHtmlMessage(productList, order, "letterClient.html");
+        emailSender.sendHtmlMessage(productList, order, "letterSeller.html");
+        return HttpStatus.OK;
+    }
 
     @GetMapping
     public List<Order> getOrders() {
