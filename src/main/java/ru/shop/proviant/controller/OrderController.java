@@ -32,7 +32,6 @@ public class OrderController {
     @PostMapping
     public Long saveAll(@RequestBody OrderDto orderDto) throws MessagingException {
         Order order = orderMapper.toEntity(orderDto);
-        orderService.saveOrder(order);
         getId(order,orderDto);
         return order.getId();
     }
@@ -43,6 +42,7 @@ public class OrderController {
         order.setPrice(orderService.setAllPrices(order.getOrderItems(), productList));
         emailSender.sendHtmlMessage(productList, order, "letterClient.html");
         emailSender.sendHtmlMessage(productList, order, "letterSeller.html");
+        orderService.saveOrder(order);
     }
 
 
