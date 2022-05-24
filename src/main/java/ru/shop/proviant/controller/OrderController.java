@@ -18,7 +18,6 @@ import java.util.List;
 @RequestMapping("/order")
 @CrossOrigin
 @RequiredArgsConstructor
-@EnableAsync
 public class OrderController {
 
     private final OrderService orderService;
