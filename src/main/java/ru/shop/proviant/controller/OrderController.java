@@ -1,6 +1,8 @@
 package ru.shop.proviant.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.*;
 import ru.shop.proviant.mapper.OrderMapper;
 import ru.shop.proviant.model.dto.OrderDto;
@@ -17,6 +19,7 @@ import java.util.List;
 @RequestMapping("/order")
 @CrossOrigin
 @RequiredArgsConstructor
+@EnableAsync
 public class OrderController {
 
     private final OrderService orderService;
@@ -30,9 +33,15 @@ public class OrderController {
         Order order = orderMapper.toEntity(orderDto);
         List<Product> productList = productService.getListProduct(orderDto.getOrderItems());
         order.setPrice(orderService.setAllPrices(order.getOrderItems(), productList));
+        getId(order);
         orderService.saveOrder(order);
         emailSender.sendHtmlMessage(productList, order, "letterClient.html");
         emailSender.sendHtmlMessage(productList, order, "letterSeller.html");
+    }
+
+    @Async
+    Long getId(Order order){
+        return order.getId();
     }
 
 
