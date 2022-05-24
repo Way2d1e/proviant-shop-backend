@@ -1,20 +1,20 @@
 package ru.shop.proviant.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.scheduling.annotation.Async;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.shop.proviant.mapper.OrderMapper;
 import ru.shop.proviant.model.dto.OrderDto;
 import ru.shop.proviant.model.entity.Order;
 import ru.shop.proviant.model.entity.Product;
+import ru.shop.proviant.service.EmailSenderService;
 import ru.shop.proviant.service.OrderService;
 import ru.shop.proviant.service.ProductService;
-import ru.shop.proviant.service.impl.EmailSenderImpl;
 
 import javax.mail.MessagingException;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/order")
 @CrossOrigin
@@ -24,26 +24,21 @@ public class OrderController {
     private final OrderService orderService;
     private final ProductService productService;
     private final OrderMapper orderMapper;
-    private final EmailSenderImpl emailSender;
 
+    private final EmailSenderService emailSenderService;
 
     @PostMapping
     public Long saveAll(@RequestBody OrderDto orderDto) throws MessagingException {
         Order order = orderMapper.toEntity(orderDto);
+        List<Product> productList = productService.getListProduct(orderDto.getOrderItems());
+        order.setPrice(orderService.setAllPrices(order.getOrderItems(), productList));
         orderService.saveOrder(order);
-        save(order,orderDto);
+        log.info("saveAll and send email");
+        emailSenderService.sendEmails(order, orderDto, productList);
+        log.info("after saveAll and sent email");
         return order.getId();
     }
 
-
-    @Async
-    HttpStatus save(Order order,OrderDto orderDto) throws MessagingException{
-        List<Product> productList = productService.getListProduct(orderDto.getOrderItems());
-        order.setPrice(orderService.setAllPrices(order.getOrderItems(), productList));
-        emailSender.sendHtmlMessage(productList, order, "letterClient.html");
-        emailSender.sendHtmlMessage(productList, order, "letterSeller.html");
-        return HttpStatus.OK;
-    }
 
     @GetMapping
     public List<Order> getOrders() {
