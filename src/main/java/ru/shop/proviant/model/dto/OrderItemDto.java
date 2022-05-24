@@ -16,7 +16,7 @@ public class OrderItemDto {
     @JsonIdentityReference(alwaysAsId = true)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id",scope = Product.class,resolver = EntityIdResolver.class)
-    private Product product;
+    private Product productId;
 
     private Double weight;
 

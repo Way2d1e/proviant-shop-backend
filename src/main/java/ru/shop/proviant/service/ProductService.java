@@ -6,4 +6,6 @@ import ru.shop.proviant.model.entity.Product;
 public interface ProductService {
     Product saveProduct(Product product);
     void deleteProduct(Long id);
+
+
 }

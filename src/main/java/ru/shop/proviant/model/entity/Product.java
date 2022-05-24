@@ -12,7 +12,6 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,5 +37,8 @@ public class Product {
     @JsonIgnore
     @OneToMany(mappedBy = "productId",cascade = CascadeType.MERGE)
     private List<OrderItem> orderItems;
+
+    @Column(name = "default_value")
+    private Double defaultValue;
 
 }
