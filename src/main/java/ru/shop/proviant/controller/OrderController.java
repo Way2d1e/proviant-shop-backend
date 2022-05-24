@@ -33,8 +33,8 @@ public class OrderController {
         Order order = orderMapper.toEntity(orderDto);
         List<Product> productList = productService.getListProduct(orderDto.getOrderItems());
         order.setPrice(orderService.setAllPrices(order.getOrderItems(), productList));
-        getId(order);
         orderService.saveOrder(order);
+        getId(order);
         emailSender.sendHtmlMessage(productList, order, "letterClient.html");
         emailSender.sendHtmlMessage(productList, order, "letterSeller.html");
     }
