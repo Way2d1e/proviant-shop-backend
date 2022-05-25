@@ -14,7 +14,7 @@ public class DataFormatter {
 
     private final Order order;
 
-    public String formatDate(Date date){
+    public String formatDate(Date date) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         return formatter.format(date);
     }
