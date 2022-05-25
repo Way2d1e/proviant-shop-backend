@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import ru.shop.proviant.model.entity.User;
 import ru.shop.proviant.repository.UserRepository;
 
-@Service("userServiceImpl")
+@Service
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
@@ -21,6 +21,6 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
 
-        return SecurityUser.fromUser(user);
+        return user;
     }
 }

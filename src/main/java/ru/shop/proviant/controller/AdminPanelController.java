@@ -13,7 +13,7 @@ import ru.shop.proviant.service.ProductService;
 import javax.validation.Valid;
 import java.math.BigDecimal;
 
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/admin")
 @RequiredArgsConstructor

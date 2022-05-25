@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     UserService userService;
 
-    public WebSecurityConfig(@Qualifier("userServiceImpl") UserService userService) {
+    public WebSecurityConfig(UserService userService) {
         this.userService = userService;
     }
 
@@ -42,26 +42,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/*").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic().authenticationDetailsSource(new WebAuthenticationDetailsSource())
                 .and()
                 .csrf().disable();
     }
-
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        super.configure(web);
-//        web.httpFirewall(allowUrlEncodedSlashHttpFirewall());
-//    }
-
-//    @Bean
-//    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
-//        StrictHttpFirewall firewall = new StrictHttpFirewall();
-//        firewall.setAllowUrlEncodedDoubleSlash(true);
-//        return firewall;
-//    }
 
 
     @Bean
