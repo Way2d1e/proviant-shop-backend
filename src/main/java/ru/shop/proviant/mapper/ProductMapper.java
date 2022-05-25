@@ -14,6 +14,7 @@ public interface ProductMapper {
 
     @Mapping(source = "category.id", target = "categoryId")
     @Mapping(source = "defaultValue", target = "defaultValue")
+    @Mapping(source = "price", target = "price")
     ProductDto toDto(Product product);
 
     @Mapping(source = "id", target = "id")
@@ -23,6 +24,7 @@ public interface ProductMapper {
     List<ProductDto> listDto(List<Product> products);
 
     @Mapping(source = "categoryId", target = "category.id")
+    @Mapping(source = "price", target = "price")
     Product toEntity(ProductDto productDto);
 
 }

@@ -29,10 +29,6 @@ public class OrderServiceImpl implements OrderService {
         BigDecimal sumPriceAllOrders = BigDecimal.ZERO;
         for (int orderIndex = 0; orderIndex < orders.size(); orderIndex++) {
             BigDecimal price = orders.get(orderIndex).getPrice();
-            if (price == null) {
-                return null;
-            }
-
             sumPriceAllOrders = sumPriceAllOrders.add(price);
         }
         return sumPriceAllOrders;
