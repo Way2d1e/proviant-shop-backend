@@ -2,15 +2,26 @@ package ru.shop.proviant.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.shop.proviant.model.dto.OrderItemDto;
 import ru.shop.proviant.model.entity.Product;
 import ru.shop.proviant.repository.ProductRepository;
 import ru.shop.proviant.service.ProductService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+
+
+    @Override
+    public List<Product> getListProduct(List<OrderItemDto> orderItemDtoList) {
+        List<Long> idList = orderItemDtoList.stream().map(OrderItemDto::getProductId).toList();
+        return productRepository.findAllById(idList);
+    }
 
     @Override
     public Product saveProduct(Product product) {
