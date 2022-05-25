@@ -19,10 +19,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getListProduct(List<OrderItemDto> orderItemDtoList) {
-        List<Long> idList = new ArrayList<>();
-        for (int indexItems = 0; indexItems < orderItemDtoList.size(); indexItems++) {
-            idList.add(orderItemDtoList.get(indexItems).getProductId());
-        }
+        List<Long> idList = orderItemDtoList.stream().map(OrderItemDto::getProductId).toList();
         return productRepository.findAllById(idList);
     }
 
