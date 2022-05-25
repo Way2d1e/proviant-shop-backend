@@ -17,15 +17,12 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
     @Column(name = "price")
     private BigDecimal price;
 
-    @NotNull
     @Column(name = "weight")
     private Double weight;
 
-    @NotNull
     @Column(name = "product_id")
     private Long productId;
 

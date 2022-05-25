@@ -12,17 +12,17 @@
 </head>
 
 <body style="max-width: 750px; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0;">
-    <div style="width: 100%; text-align: center;">
-        <div style="background-color: #D3EAC3;">
-            <p style="margin: 0; padding: 0; text-align: center;">
-                <img style="padding: 10px 0 15px 0;" src="http://i.yapx.ru/R7NVY.png" height="60" alt="Логотип компании">
-            </p>
-        </div>
+<div style="width: 100%; text-align: center;">
+    <div style="background-color: #D3EAC3;">
+        <p style="margin: 0; padding: 0; text-align: center;">
+            <img style="padding: 10px 0 15px 0;" src="http://i.yapx.ru/R7NVY.png" height="60" alt="Логотип компании">
+        </p>
+    </div>
     <div style="margin-bottom: 10px; font-size: 36px;"><strong>Спасибо за заказ!</strong></div>
     <div style="margin-bottom: 10px; font-size: 28px;">
         <strong th:text="${order.getClient().getName()}"></strong>
         Ваш заказ #
-        <strong th:text="${order.getId()}"></strong> 
+        <strong th:text="${order.getId()}"></strong>
         ждет оплаты
     </div>
     <div style="margin-bottom: 10px; font-size: 20px;">Ожидаем вас по адресу <strong>пос. Красная Яруга
@@ -30,23 +30,25 @@
     </div>
     <div style="margin-bottom: 10px; font-size: 20px;">Заказ будет храниться в течении 24 часов после <span
             th:text="${dateFormat.formatDate(order.getDate())}"/></div>
-    <div style="margin-bottom: 10px; font-size: 20px;"><strong>Для получения заказа покажите письмо продавцу, <br> которое пришло Вам на почту </strong>
+    <div style="margin-bottom: 10px; font-size: 20px;"><strong>Для получения заказа покажите письмо продавцу, <br>
+        которое пришло Вам на почту </strong>
     </div>
-    <div style="margin-bottom: 10px; font-size: 20px; text-align: center;">Оплатить заказ вы можете любым удобным для Вас способом
+    <div style="margin-bottom: 10px; font-size: 20px; text-align: center;">Оплатить заказ вы можете любым удобным для
+        Вас способом
     </div>
     <div style="padding-top: 20px; font-size: 28px; font-weight: bold;">
         Список заказанных товаров:
     </div>
     <table style="font-size: 18px; margin: auto;">
-        <tr  th:each="products, counter : ${productList}">
+        <tr th:each="products, counter : ${productList}">
             <th style="color: #46B14B;">Наименование</th>
-            <td> - </td>
+            <td> -</td>
             <td style="text-align: left" th:text="${products.getName()}"></td>
             <th style="padding-left: 15px; color: #46B14B;">Сумма</th>
-            <td> - </td>
+            <td> -</td>
             <td th:text="${order.getOrderItems().get(counter.index).getPrice()}">руб</td>
             <th style="padding-left: 15px; color: #46B14B;">Количество</th>
-            <td> - </td>
+            <td> -</td>
             <td th:text="${order.getOrderItems().get(counter.index).getWeight()}"></td>
             <td th:text="${products.getTypeMeasuring()}"></td>
         </tr>
@@ -57,10 +59,10 @@
         руб
     </div>
 
-<div style="width: 100%; margin-top: 20px; padding: 20px 0; text-align: center; background-color: #D3EAC3;">
-    Вы получили это письмо, потому что покупатель <br> сделал новый заказ на сайте <strong> proviant31.ru </strong>
-</div>
-
+    <div style="width: 100%; margin-top: 20px; padding: 20px 0; text-align: center; background-color: #D3EAC3;">
+        Вы получили это письмо, потому что покупатель <br> сделал новый заказ на сайте <strong> proviant31.ru </strong>
     </div>
+
+</div>
 </body>
 </html>

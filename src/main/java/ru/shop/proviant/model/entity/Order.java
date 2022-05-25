@@ -6,6 +6,10 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +36,7 @@ public class Order {
             @AttributeOverride(name = "phoneNumber", column = @Column(name = "phonenumber_client")),
             @AttributeOverride(name = "email", column = @Column(name = "email_client"))
     })
-    private Client client = new Client();
+    private Client client;
 
     @Column(name = "date_order")
     @CreationTimestamp

@@ -2,6 +2,7 @@ package ru.shop.proviant.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.shop.proviant.mapper.OrderMapper;
 import ru.shop.proviant.model.dto.OrderDto;
@@ -12,6 +13,7 @@ import ru.shop.proviant.service.OrderService;
 import ru.shop.proviant.service.ProductService;
 
 import javax.mail.MessagingException;
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -28,7 +30,7 @@ public class OrderController {
     private final EmailSenderService emailSenderService;
 
     @PostMapping
-    public Long saveAll(@RequestBody OrderDto orderDto) throws MessagingException {
+    public Long saveAll(@Valid @RequestBody OrderDto orderDto) throws MessagingException {
         Order order = orderMapper.toEntity(orderDto);
         List<Product> productList = productService.getListProduct(orderDto.getOrderItems());
         order.setPrice(orderService.setAllPrices(order.getOrderItems(), productList));
