@@ -24,7 +24,7 @@ public class OrderItem {
     private BigDecimal price;
 
     @NotNull
-    @DecimalMin("0.0")
+    @DecimalMin("0.1")
     @DecimalMax("10.0")
     @Column(name = "weight")
     private Double weight;

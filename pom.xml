@@ -14,7 +14,6 @@
     <name>proviant</name>
     <description>proviant</description>
     <properties>
-        <java.version>17</java.version>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.24</org.projectlombok.version>
     </properties>
@@ -89,7 +88,7 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -129,12 +128,7 @@
             <version>2.7.0</version>
         </dependency>
 
-
-
-
     </dependencies>
-
-
     <build>
         <plugins>
             <plugin>
@@ -145,8 +139,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>17</source>
+                    <target>17</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>
@@ -196,8 +190,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>9</source>
-                    <target>9</target>
+                    <source>17</source>
+                    <target>17</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
