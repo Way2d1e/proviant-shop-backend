@@ -1,10 +1,12 @@
 package ru.shop.proviant.model.entity;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Getter
@@ -17,12 +19,17 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     @Column(name = "price")
     private BigDecimal price;
 
+    @NotNull
+    @DecimalMin("0.0")
+    @DecimalMax("10.0")
     @Column(name = "weight")
     private Double weight;
 
+    @NotNull
     @Column(name = "product_id")
     private Long productId;
 

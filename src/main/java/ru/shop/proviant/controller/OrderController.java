@@ -2,12 +2,14 @@ package ru.shop.proviant.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.shop.proviant.mapper.OrderMapper;
 import ru.shop.proviant.model.dto.OrderDto;
 import ru.shop.proviant.model.entity.Order;
 import ru.shop.proviant.model.entity.Product;
+import ru.shop.proviant.repository.OrderRepository;
 import ru.shop.proviant.service.EmailSenderService;
 import ru.shop.proviant.service.OrderService;
 import ru.shop.proviant.service.ProductService;
@@ -26,7 +28,7 @@ public class OrderController {
     private final OrderService orderService;
     private final ProductService productService;
     private final OrderMapper orderMapper;
-
+    private final OrderRepository orderRepository;
     private final EmailSenderService emailSenderService;
 
     @PostMapping
@@ -45,6 +47,11 @@ public class OrderController {
     @GetMapping
     public List<Order> getOrders() {
         return orderService.getOrders();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity getOrderById(@PathVariable Long id){
+        return ResponseEntity.ok(orderRepository.findById(id));
     }
 
 

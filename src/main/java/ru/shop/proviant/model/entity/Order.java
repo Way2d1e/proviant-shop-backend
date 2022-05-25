@@ -24,6 +24,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
+    @NotEmpty
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private List<OrderItem> orderItems;
