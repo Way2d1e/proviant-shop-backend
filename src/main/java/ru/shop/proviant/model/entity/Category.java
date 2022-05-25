@@ -10,7 +10,6 @@ import java.util.List;
 @Getter
 @Entity
 @Setter
-@NoArgsConstructor
 public class Category {
 
     @Id
