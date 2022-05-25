@@ -15,12 +15,15 @@ public class Client {
 
     @NotBlank
     @Size(min = 3, max = 15)
+    @Pattern(regexp="^[а-яА-ЯёЁa-zA-Z0-9]+$",message = "Invalid Input")
     private String surname;
     @NotBlank
     @Size(min = 3, max = 15)
+    @Pattern(regexp="^[а-яА-ЯёЁa-zA-Z0-9]+$",message = "Invalid Input")
     private String name;
     @NotBlank
     @Size(min = 3, max = 15)
+    @Pattern(regexp="^[а-яА-ЯёЁa-zA-Z0-9]+$",message = "Invalid Input")
     private String middleName;
     @NotNull
     private Long phoneNumber;

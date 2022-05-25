@@ -42,7 +42,4 @@ public class Product {
     private Double defaultValue;
 
 
-    @Column(name = "default_value")
-    private Double defaultValue;
-
 }

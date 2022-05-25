@@ -1,6 +1,7 @@
 package ru.shop.proviant.model.dto;
 
 import lombok.Data;
+import ru.shop.proviant.model.entity.RoleDto;
 
 import java.io.Serializable;
 import java.util.Set;

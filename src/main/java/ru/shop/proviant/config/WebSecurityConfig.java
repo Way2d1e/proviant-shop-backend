@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     UserService userService;
 
-    public WebSecurityConfig(@Qualifier("userServiceImpl") UserService userService) {
+    public WebSecurityConfig(@Qualifier("userService") UserService userService) {
         this.userService = userService;
     }
 
