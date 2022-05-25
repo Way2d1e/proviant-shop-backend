@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,5 +41,8 @@ public class Product {
     @Column(name = "default_value")
     private Double defaultValue;
 
+
+    @Column(name = "default_value")
+    private Double defaultValue;
 
 }

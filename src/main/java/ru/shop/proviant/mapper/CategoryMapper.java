@@ -10,10 +10,9 @@ import java.util.List;
 
 @Mapper
 public interface CategoryMapper {
-    CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
 
-    @Mapping(source = "nameEnglish", target = "nameEnglish")
     CategoryDto toDto(Category category);
+
 
     List<CategoryDto> toListDto(List<Category> categories);
 }
