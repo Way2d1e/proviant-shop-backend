@@ -9,6 +9,7 @@ import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.vote.AuthenticatedVoter;
 import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.access.vote.UnanimousBased;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/**").permitAll()
+                .antMatchers("/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic().authenticationDetailsSource(new WebAuthenticationDetailsSource())
@@ -49,30 +50,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        super.configure(web);
-        web.httpFirewall(allowUrlEncodedSlashHttpFirewall());
-    }
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        super.configure(web);
+//        web.httpFirewall(allowUrlEncodedSlashHttpFirewall());
+//    }
+
+//    @Bean
+//    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+//        StrictHttpFirewall firewall = new StrictHttpFirewall();
+//        firewall.setAllowUrlEncodedDoubleSlash(true);
+//        return firewall;
+//    }
+
 
     @Bean
-    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
-        StrictHttpFirewall firewall = new StrictHttpFirewall();
-        firewall.setAllowUrlEncodedDoubleSlash(true);
-        return firewall;
+    protected DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setUserDetailsService(userService);
+        return daoAuthenticationProvider;
     }
 
-
-    @Autowired
-    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService);
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(daoAuthenticationProvider());
     }
-
-
-
-
-
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
